@@ -1,7 +1,3 @@
-<?php
-include '../../includes/auth.php';
-if ($_SESSION['role'] !== 'manager') { die("Access denied."); }
-?>
 
 <!DOCTYPE html>
 <html lang="en">

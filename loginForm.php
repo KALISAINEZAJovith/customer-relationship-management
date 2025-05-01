@@ -14,14 +14,39 @@
             padding: 0;
             height: 100vh;
         }
-        .header {
+
+        .header-container {
             background-color: #2c3e50;
-            padding: 18px;
             color: white;
-            text-align: center;
-            font-size: 26px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header1 {
+            font-size: 26px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .header {
+            font-size: 12px;
+            margin-top: 4px;
+            padding-left: 25px;
+        }
+
         .container {
             width: 450px;
             background-color: white;
@@ -30,24 +55,29 @@
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
+
         h2 {
             text-align: center;
             margin-bottom: 25px;
             color: #2c3e50;
             font-weight: 600;
         }
+
         .form-box {
             margin-top: 20px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-box label {
             display: block;
             margin-bottom: 8px;
             color: #34495e;
             font-weight: 500;
         }
+
         .form-box input[type=email],
         .form-box input[type=password] {
             width: 100%;
@@ -57,11 +87,13 @@
             box-sizing: border-box;
             transition: border 0.3s ease;
         }
+
         .form-box input:focus {
             border-color: #3498db;
             outline: none;
             box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
         }
+
         .form-box button {
             width: 100%;
             padding: 14px;
@@ -73,22 +105,27 @@
             font-size: 16px;
             transition: background-color 0.3s ease;
         }
+
         .form-box button:hover {
             background-color: #3498db;
         }
+
         .roles {
             margin-bottom: 20px;
             display: flex;
             gap: 20px;
         }
+
         .roles label {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
+
         .roles input {
             margin-right: 8px;
         }
+
         .info-box {
             margin-top: 25px;
             background-color: #f8f9fa;
@@ -97,6 +134,7 @@
             font-size: 14px;
             color: #555;
         }
+
         .error-message {
             color: #e74c3c;
             background-color: #fdecea;
@@ -105,23 +143,33 @@
             margin-bottom: 20px;
             display: none;
         }
+
         .forgot-password {
             text-align: right;
             margin: 10px 0 20px;
         }
+
         .forgot-password a {
             color: #3498db;
             text-decoration: none;
             font-size: 14px;
         }
+
         .forgot-password a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="header">ENTERPRISE CRM SOLUTION</div>
-
+    <div class="header-container">
+        <div class="logo-text">
+            <img src="images/panda-logo.png" alt="Panda Logo" class="logo-img">
+            <div>
+                <div class="header1">PANDA</div>
+                <div class="header">CRM SOLUTION</div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <h2>Account Login</h2>
         
@@ -155,10 +203,6 @@
 
             <button type="submit">Sign In</button>
         </form>
-
-        <div class="info-box">
-            <p>For access issues, please contact the IT support team at support@enterprise-crm.com or ext. 5500</p>
-        </div>
     </div>
 
     <script>
