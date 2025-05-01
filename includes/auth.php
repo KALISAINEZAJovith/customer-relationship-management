@@ -1,14 +1,14 @@
 <?php
-require_once '../includes/db.php';
 session_start();
 
-function isAuthenticated() {
-    return isset($_SESSION['user_id']);
-}
+function checkAuth($role = null) {
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../views/manager/loginForm.php");
+        exit();
+    }
 
-function requireLogin() {
-    if (!isAuthenticated()) {
-        header("Location: ../../loginForm.php");
+    if ($role && $_SESSION['user_role'] !== $role) {
+        echo "Access Denied";
         exit();
     }
 }
