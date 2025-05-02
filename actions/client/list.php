@@ -13,14 +13,14 @@ $clients = $stmt->fetchAll();
     <a href="create.php">Add New Client</a><br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <tr>
-            <th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th>Actions</th>
+            <th>Name</th><th>Email</th><th>Phone</th><th>created_by</th><th>Actions</th>
         </tr>
         <?php foreach ($clients as $client): ?>
         <tr>
             <td><?= htmlspecialchars($client['name']) ?></td>
             <td><?= htmlspecialchars($client['email']) ?></td>
             <td><?= htmlspecialchars($client['phone']) ?></td>
-            <td><?= htmlspecialchars($client['company']) ?></td>
+            <td><?= htmlspecialchars($client['created_by']) ?></td>
             <td>
                 <a href="edit.php?id=<?= $client['id'] ?>">Edit</a> |
                 <a href="delete.php?id=<?= $client['id'] ?>" onclick="return confirm('Delete this client?');">Delete</a>

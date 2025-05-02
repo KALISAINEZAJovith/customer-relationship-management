@@ -162,7 +162,7 @@
 <body>
     <div class="header-container">
         <div class="logo-text">
-            <img src="images/panda-logo.png" alt="Panda Logo" class="logo-img">
+            <img src="../images/panda-logo.png" alt="Panda Logo" class="logo-img">
             <div>
                 <div class="header1">PANDA</div>
                 <div class="header">CRM SOLUTION</div>
@@ -176,7 +176,7 @@
             Please complete all required fields.
         </div>
         
-        <form method="POST" action="authenticate.php" class="form-box" id="loginForm">
+        <form method="POST" action="../actions/login.php" class="form-box" id="loginForm">
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>

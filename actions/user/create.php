@@ -1,23 +1,27 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once '../../includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $role = $_POST['role'];
+    $name     = trim($_POST['name']);
+    $email    = trim($_POST['email']);
     $password = $_POST['password'];
+    $role     = $_POST['role'];
 
-    if ($name && $email && $role && $password) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$name, $email, $hashedPassword, $role]);
-        header("Location: ../dashboard.php"); // or user/list.php
-        exit;
-    } else {
-        $error = "All fields are required.";
+    if (!$name || !$email || !$password || !$role) {
+        die("All fields are required.");
     }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
+
+    if ($stmt->execute()) {
+        header("Location: ../../views/manager/register.php?success=1");
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
 ?>
-
-<!-- HTML form with proper input fields -->

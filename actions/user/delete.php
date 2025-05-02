@@ -1,10 +1,18 @@
 <?php
-require_once '../includes/db.php';
+require_once '../../includes/db.php';
 
-$id = $_GET['id'];
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
 
-$stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
-$stmt->execute([$id]);
+    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->bind_param("i", $id);
 
-header("Location: ../dashboard.php");
-exit;
+    if ($stmt->execute()) {
+        header("Location: ../../views/manager/register.php?deleted=1");
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+?>

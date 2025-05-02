@@ -1,21 +1,21 @@
 <?php
-require_once '../includes/db.php';
+require_once '../../includes/db.php';
 
-$id = $_GET['id'];
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([$id]);
-$user = $stmt->fetch();
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $role = $_POST['role'];
+    $stmt = $conn->prepare("SELECT id, name, email, role FROM users WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?");
-    $stmt->execute([$name, $email, $role, $id]);
-    header("Location: ../dashboard.php");
-    exit;
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        echo json_encode($user); // Return JSON for frontend to populate form
+    } else {
+        echo json_encode(["error" => "User not found"]);
+    }
+
+    $stmt->close();
 }
 ?>
-
-<!-- Show form prefilled with user data -->

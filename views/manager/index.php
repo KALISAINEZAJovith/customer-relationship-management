@@ -1,7 +1,21 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+
+// If user is already logged in, redirect based on role
+if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
+    switch ($_SESSION['role']) {
+        case 'admin':
+            header("Location: admin/dashboard.php");
+            break;
+        case 'manager':
+            header("Location: manager/dashboard.php");
+            break;
+        case 'employee':
+            header("Location: employee/dashboard.php");
+            break;
+        default:
+            header("Location: dashboard.php");
+    }
     exit();
 }
 ?>
@@ -9,22 +23,29 @@ if (isset($_SESSION['user_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="../../style/navbar.css">
+    <title>CRM Portal - Login</title>
+    <link rel="stylesheet" href="style/form.css">
 </head>
 <body>
-    <h2>Login to CRM</h2>
-    <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
-    <?php endif; ?>
-    <form action="../../actions/action/authenticate.php" method="POST">
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+    <div class="form-box">
+        <h2>Login</h2>
+        <?php
+        if (isset($_GET['error'])) {
+            echo "<p style='color:red; text-align:center;'>" . htmlspecialchars($_GET['error']) . "</p>";
+        }
+        ?>
+        <form method="POST" action="authenticate.php">
+            <label>Email:</label>
+            <input type="email" name="email" required>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+            <label>Password:</label>
+            <input type="password" name="password" required>
 
-        <button type="submit">Login</button>
-    </form>
+            <button type="submit">Login</button>
+        </form>
+        <div style="text-align:center; margin-top: 10px;">
+            <a href="forgot_password.php">Forgot Password?</a>
+        </div>
+    </div>
 </body>
 </html>

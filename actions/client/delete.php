@@ -1,5 +1,8 @@
 <?php
-require_once '../includes/db.php';
+$host = 'localhost'; 
+$db = 'crm_portal';      
+$username = 'root'; 
+$password = ''; 
 
 $id = $_GET['id'] ?? null;
 if ($id) {
