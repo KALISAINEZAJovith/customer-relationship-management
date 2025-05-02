@@ -188,7 +188,7 @@
             </div>
             
             <div class="forgot-password">
-                <a href="resetPassword.php">Forgot password?</a>
+                <a href="../actions/forgot_password.php">Forgot password?</a>
             </div>
 
             <div class="form-group">

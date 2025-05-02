@@ -3,7 +3,14 @@ require_once '../../includes/db.php';
 require_once '../../includes/auth.php';
 
 checkAuth();
-checkRole('employee'); // Only employees can access
+checkRole('employee');
+
+function checkRole($role) {
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== $role) {
+        header('Location: ../../unauthorized.php');
+        exit();
+    }
+}// Only employees can access
 
 $user_id = $_SESSION['user_id'];
 
@@ -29,5 +36,12 @@ $result = $stmt->get_result();
         <strong>Email:</strong> <?= htmlspecialchars($row['email']) ?><br>
         <strong>Phone:</strong> <?= htmlspecialchars($row['phone']) ?><br>
 
-        <label>Status:</label>
-        <input type="text" name="status" value="<?= htmlspecialchars
+                <label>Status:</label>
+                <input type="text" name="status" value="<?= htmlspecialchars($row['status']) ?>"><br>
+        
+                <label>Notes:</label>
+                <textarea name="notes"><?= htmlspecialchars($row['notes']) ?></textarea><br>
+        
+                <button type="submit">Update Lead</button>
+            </form>
+        <?php endwhile; ?>

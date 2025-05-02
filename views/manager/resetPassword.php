@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-//     die("Access denied: Please log in first.");
-// }
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    die("Access denied: Please log in first.");
+}
 // Redirect to loginform.php after password change
 ?>
 <!DOCTYPE html>
