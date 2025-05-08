@@ -1,18 +1,45 @@
+/* Navigation bar styling */
 .navbar {
-    background-color: #343a40;
-    padding: 10px 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #3498db;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.navbar a {
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
     color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    margin-left: 15px;
+    transition: background-color 0.3s;
 }
 
-.navbar a:hover {
-    text-decoration: underline;
+.navbar li a:hover {
+    background-color: #2980b9;
 }
+
+.navbar .active {
+    background-color: #2980b9;
+}
+
+.navbar .right {
+    float: right;
+}
+
+.navbar .user-info {
+    color: white;
+    padding: 14px 16px;
+    display: inline-block;
+}
+
